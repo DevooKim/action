@@ -4,7 +4,7 @@
  * @apiGroup Program
  * @apiPermission 기관유저
  * @apiDescription
- * 프로그램을 생성한다.234234
+ * 프로그램을 생성한다.@@@@
  *
  * @apiHeader {String} x-user-id 유저 id
  *

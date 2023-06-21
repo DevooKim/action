@@ -24,7 +24,7 @@ jobs:
               run: npm i apidoc -g
             - name: docs build
               run: |
-                  apidoc -i ./index -o docs/
+                  apidoc -i ./index.js -o docs/
                   ls -al
             - name: upload
               uses: actions/upload-artifact@v3

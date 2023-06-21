@@ -1,7 +1,8 @@
 name: build-apidoc
 on:
-    pull_request:
-        types: [opened, synchronize]
+    # pull_request:
+    #     types: [opened, synchronize]
+    workflow_dispatch:
 jobs:
     cache:
         runs-on: ubuntu-latest

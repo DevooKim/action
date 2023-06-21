@@ -19,8 +19,8 @@ jobs:
                   npm run apidoc
                   mv ./docs ./doc-${{github.sha}}
                   ls -al
-            # - name: Upload to s3
-            #   env:
-            #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-            #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-            #   run: aws sync --delete region ap-northeast-2 docs
+            - name: Upload to s3
+              env:
+                AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+              run: aws sync --delete region ap-northeast-2 doc-${{github.sha}} s3://khw-gitaction-test

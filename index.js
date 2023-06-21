@@ -28,5 +28,4 @@
  * @apiBody {String[]} [attachedFiles] 첨부파일
  * @apiBody {String} [notice] Notice
  * @apiBody {Number{0-}} [price] 가격
- *
  */

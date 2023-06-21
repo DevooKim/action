@@ -15,8 +15,9 @@ jobs:
             - name: install dependencies
               run: npm ci
             - name: docs build
-            #   run: npm run apidoc
-              run: apidoc -i ./ -o ${{github.sha}}
+              run: |
+                  npm run apidoc
+                  mv ./docs ./doc-${{github.sha}}
             # - name: Upload to s3
             #   env:
             #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}

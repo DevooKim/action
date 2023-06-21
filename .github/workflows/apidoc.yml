@@ -1,22 +1,25 @@
-name: apidoc-to-s3
+name: build-apidoc
 on:
     pull_request:
-        types: [opened, synchronize, reopened]
 jobs:
-    install:
+    cache:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v3
-            - uses: actions/setup-node@v3
+            - name: checkout
+              uses: actions/checkout@v3
+            - name: cache
+              uses: actions/cache@v3
               with:
-                  node-version: 16
-                  cache: "npm"
-
-            - name: Install dependencies
-              run: npm i -g apidoc
-            - name: Generate docs
-              run: apidoc -i src/ -o docs/
-            - uses: actions/upload-artifact@v3
+                  path: ~/.npm
+                  key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+            - name: install dependencies
+              run: npm ci
+            - name: docs build
+              run: |
+                  npm run apidoc
+                  ls -al
+            - name: upload
+              uses: actions/upload-artifact@v3
               with:
                   name: apidoc
-                  path: docs/
+                  path: docs

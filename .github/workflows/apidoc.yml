@@ -20,6 +20,7 @@ jobs:
             - if: steps.npm-cache.outputs.cache-hit != 'true'
               run: echo 'npm cache missed!'
             - run: ls -al
+            - run: pwd
             - name: install dependencies
               run: npm i apidoc -g
             - name: docs build

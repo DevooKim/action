@@ -26,9 +26,10 @@ jobs:
             - name: docs build
               run: |
                   apidoc -i ./ -o docs/
+                  mv ./docs ./swcamp-${{github.sha}}
                   ls -al
             - name: upload
               uses: actions/upload-artifact@v3
               with:
                   name: apidoc
-                  path: docs
+                  path: swcamp-${{github.sha}}

@@ -12,7 +12,6 @@ jobs:
                   key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
             - run: npm ci
             - run: npm run apidoc
-            - run: npm run build
             - uses: actions/upload-artifact@v3
               with:
                   name: docs

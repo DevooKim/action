@@ -16,3 +16,5 @@ jobs:
             - if: steps.npm-cache.outputs.cache-hit != 'true'
               run: echo 'npm cache missed!'
             - run: npm ci
+            - run: npm run apidoc
+            - run: ls -al

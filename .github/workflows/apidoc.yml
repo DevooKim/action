@@ -1,8 +1,13 @@
 name: build-apidoc
 on:
-    # pull_request:
-    #     types: [opened, synchronize]
-    workflow_dispatch:
+    pull_request:
+        types: [opened, synchronize]
+        branches:
+            - "release/**"
+        paths:
+            - "**.js"
+
+    # workflow_dispatch:
 jobs:
     cache:
         runs-on: ubuntu-latest
@@ -32,3 +37,4 @@ jobs:
               with:
                   name: swcamp-${{github.sha}}
                   path: docs
+            - run: echo NUMBER - ${{ github.event.number }}

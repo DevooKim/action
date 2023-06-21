@@ -1,11 +1,14 @@
 name: build-apidoc
 on:
-    pull_request:
-        types: [opened, synchronize]
+    # pull_request:
+    #     types: [opened, synchronize]
+    #     # branches:
+    #     #     - "release/**"
+    #     paths:
+    #         - "**.js"
+    push:
         branches:
-            - "release/**"
-        paths:
-            - "**.js"
+            - "develop"
 
     # workflow_dispatch:
 jobs:

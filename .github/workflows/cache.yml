@@ -5,14 +5,20 @@ jobs:
     cache:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v3
-            - uses: actions/cache@v3
+            - name: checkout
+              uses: actions/checkout@v3
+            - name: cache
+              uses: actions/cache@v3
               with:
                   path: ~/.npm
                   key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-            - run: npm ci
-            - run: npm run apidoc
-            - uses: actions/upload-artifact@v3
-              with:
-                  name: docs
-                  path: docs
+            - name: install dependencies
+              run: npm ci
+            - name: docs build
+            #   run: npm run apidoc
+              run: apidoc -i ./ -o ${{github.sha}}
+            # - name: Upload to s3
+            #   env:
+            #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            #   run: aws sync --delete region ap-northeast-2 docs

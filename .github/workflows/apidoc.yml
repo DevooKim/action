@@ -12,12 +12,12 @@ jobs:
               uses: actions/cache@v3
               with:
                   path: ~/.npm
-                  key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+                  key: ${{ runner.os }}-node
             - name: install dependencies
-              run: npm ci
+              run: npm i apidoc -g
             - name: docs build
               run: |
-                  npm run apidoc
+                  apidoc -i src/ -o docs/
                   ls -al
             - name: upload
               uses: actions/upload-artifact@v3

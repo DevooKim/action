@@ -11,9 +11,14 @@ jobs:
               uses: actions/checkout@v3
             - name: cache
               uses: actions/cache@v3
+              id: npm-cache
               with:
                   path: ~/.npm
                   key: ${{ runner.os }}-node
+            - if: steps.npm-cache.outputs.cache-hit == 'true'
+              run: echo 'npm cache hit!'
+            - if: steps.npm-cache.outputs.cache-hit != 'true'
+              run: echo 'npm cache missed!'
             - name: install dependencies
               run: npm i apidoc -g
             - name: docs build

@@ -2,8 +2,8 @@ name: build-apidoc
 on:
     pull_request:
         types: [opened, synchronize]
-        branches:
-            - "release/**"
+        # branches:
+        #     - "release/**"
         paths:
             - "**.js"
 

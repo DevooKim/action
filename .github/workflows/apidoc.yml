@@ -1,6 +1,7 @@
 name: build-apidoc
 on:
     pull_request:
+        types: [opened, synchronize]
 jobs:
     cache:
         runs-on: ubuntu-latest
